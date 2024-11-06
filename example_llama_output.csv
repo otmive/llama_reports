@@ -1,0 +1,19 @@
+Report,Output
+example_pair,"Score: 7, Reasoning: Both reports are discussing the results of an MRI scan of the lumbar spine, focusing on the technical aspects such as the technique used, findings, and impression. The reports have similar structures and discuss similar topics, including disc degeneration, muscle spasm, and vertebral body lesions. However, there are some differences in the details of the findings, such as the severity of the disc bulge and the presence of a vertebral body lesion in one report. The reports also have slightly different wording and phrasing, but the technical content is similar.
+
+Similarities:
+
+- Both reports discuss the results of an MRI scan of the lumbar spine.
+- Both reports mention mild straightening of the lumbar spine denoting muscle spasm.
+- Both reports discuss mild to moderate degenerative changes in the discs.
+- Both reports mention disc bulges and neural compromise.
+- Both reports have similar impressions, including back muscle spasm and multilevel disc degeneration.
+
+Differences:
+
+- The severity of the disc bulge and neural compromise varies between the two reports.
+- One report mentions a vertebral body lesion that is not present in the other report.
+- The wording and phrasing of the reports are slightly different.
+
+Overall, the technical content of the two reports is similar, but there are some differences in the details of the findings."
+example_pair2,"Score: 9, Reasoning: The two reports are nearly identical in terms of technical content, with the main differences being the location of the herniated disc (right in Report 1, left in Report 2) and the mention of the disc lesion in the opinion section. The findings section is identical, including the description of the cervical spine straightening, anterior compression of the spinal cord, and the details of the disc bulges and protrusions. The opinion section also shares the same conclusion about the back muscle spasm and degenerative changes. Overall, the similarity between the two reports is very high, with only minor differences."

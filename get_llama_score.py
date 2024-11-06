@@ -36,8 +36,7 @@ def compare(
     report_2: str,
     model: str="llama3",
     score: str="raw",
-    output_file: str="output.txt",
-    use_entities: bool=False,
+    output_file: str=None,
     score_only: bool=False
     ):
     """
@@ -96,25 +95,23 @@ def compare(
                 "content": message,
             }
         ]
-        # Print the assistant's response
         outputs = pipe(messages, max_new_tokens=512)
-        print(outputs[0]['generated_text'][0]['content'])
-        assistant_out = outputs[0]['generated_text'][1]['content']
         
         assistant_out = outputs[0]['generated_text'][1]['content']
 
-        # Open the CSV file in append mode
-        if not score_only:
-            print(assistant_out)
-            with open(output_file, "w") as f:
-                f.write(assistant_out)
-                f.close()
-        else:
-            score = get_score(assistant_out)
-            print("Score: ", score)
-            with open(output_file, "w") as f:
-                f.write(score)
-                f.close()
+        if output_file:
+            # Open the CSV file in append mode
+            if not score_only:
+                with open(output_file, "w") as f:
+                    f.write(assistant_out)
+                    f.close()
+            else:
+                score = get_score(assistant_out)
+                print("Score: ", score)
+                with open(output_file, "w") as f:
+                    f.write(score)
+                    f.close()
+                    
         return assistant_out
  
 

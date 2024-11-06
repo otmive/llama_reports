@@ -110,7 +110,7 @@ def get_context(pipe, report1, report2, entity, num_times_seen):
 
 def get_pipe():
 
-    model_name = "../llama_reports/meta-llama/Meta-Llama-3.1-8B-Instruct"
+    model_name = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 
 
     bnb_config = transformers.BitsAndBytesConfig(
@@ -123,11 +123,13 @@ def get_pipe():
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_name,
         device_map="auto",
-        quantization_config=bnb_config
+        quantization_config=bnb_config,
+        token=HF_TOKEN
     )
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
-        model_name
+        model_name,
+        token=HF_TOKEN
     )
 
     pipe = transformers.pipeline(

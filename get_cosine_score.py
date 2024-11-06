@@ -61,8 +61,6 @@ def main():
     doc2 = nlp(report_2)
     ents1 = [e.text for e in doc1.ents]
     ents2 = [e.text for e in doc2.ents]
-    print("ents1, ", ents1)
-    print("ents2 ", ents2)
     score = mcse(nlp, ents1, ents2)
     print(score)
     return(score)
