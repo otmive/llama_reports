@@ -31,18 +31,6 @@ def clean_report(report):
 
     return cleaned_report
 
-def get_model(model):
-    if model == 'biomistral':
-        model_name = "BioMistral/BioMistral-7B"
-    elif model == 'llama3':
-        model_name = "../llama_reports/meta-llama/Meta-Llama-3.1-8B-Instruct"
-    elif model == "mistral":
-        model_name = "mistralai/Mistral-7B-Instruct-v0.3"
-    elif model == "llama2":
-        model_name = "meta-llama/Llama-2-7b-chat-hf"
-    print(model_name)
-    return model_name
-
 def compare(
     report_1: str,
     report_2: str,
@@ -56,7 +44,7 @@ def compare(
     Compare two reports and return a similarity score.
     """
     
-    model_name = get_model(model)
+    model_name = "meta-llama/Llama-3.1-8B-Instruct"
 
     bnb_config = transformers.BitsAndBytesConfig(
         load_in_4bit=True,
@@ -93,22 +81,13 @@ def compare(
         report_2 = clean_report(report_2)
 
             
-        if use_entities:
-            
-            message = f"""
-                Please provde a similarity score out of 10 for the two list of extracted entities from two radiology reports. Note which entities are 
-                not present in both. Entities from report 1: {ents1}. Entities from report 2: {ents2}.
-                Please give your output in the template
-                Score:<score>, Reasoning:<reasoning>
+        message = f"""
+            Please can you provide a similarity score out of 10 for these two reports.
+            Focus on technical content rather than style or phrasing.
+            Please give your output in the template
+            Score:<score>, Reasoning:<reasoning>
+            Report 1: {report_1}, Report 2: {report_2}
             """
-        else:
-            message = f"""
-                Please can you provide a similarity score out of 10 for these two reports.
-                Focus on technical content rather than style or phrasing.
-                Please give your output in the template
-                Score:<score>, Reasoning:<reasoning>
-                Report 1: {report_1}, Report 2: {report_2}
-                """
 
         messages = [
 
@@ -123,9 +102,6 @@ def compare(
         assistant_out = outputs[0]['generated_text'][1]['content']
         
         assistant_out = outputs[0]['generated_text'][1]['content']
-
-        # Check if the file exists
-        file_exists = os.path.exists(output_file)
 
         # Open the CSV file in append mode
         if not score_only:
